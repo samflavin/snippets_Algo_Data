@@ -1,3 +1,4 @@
+
 // cool static method to check distance bwtn two points.  
 class Point {
     constructor(x, y) {
@@ -32,6 +33,13 @@ class Node {
 }
 
 // getting into data structures.  Singly linked lists, with a few methods.  
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
 class SinglyLinkedList {
     constructor() {
         this.length = 0;
@@ -50,13 +58,13 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
-        traverse(){
-            var current = this.head;
-            while(current){
-            console.log(current.val)
-            current = current.next
-            } 
-        }
+    //     traverse(){
+    //         var current = this.head;
+    //         while(current){
+    //         console.log(current.val)
+    //         current = current.next
+    //         } 
+    //     }
     pop() {
         if (!this.head) return undefined;
         var current = this.head;
@@ -82,11 +90,53 @@ class SinglyLinkedList {
         this.length--;
         return oldHead;
     }
+    unshift(val) {
+        var newNode = new Node(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+
+        this.length++;
+        return this;
+    }
+    get(index) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        } else {
+            let counter = 0;
+            let current = this.head;
+            while (counter !== index) {
+                current = current.next;
+                counter++;
+            }
+            return current
+        }
+    }
+    set(index, val) {
+        let foundNode = this.get(index);
+        if (foundNode) {
+            foundNode.val = val;
+            return true;
+        }
+    }
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length)
+
+    }
 }
 
 var list = new SinglyLinkedList()
 list.push("Hello")
 list.push("Goodbye")
+list.push("Ouvua")
+list.push("Dubois")
+
+
 
 // functioning bubble sort method.  May not be the most efficient, but it can be modified for
 // some certain cases
@@ -140,4 +190,3 @@ function sumRange(num) {
     return num + sumRange(num - 1)
 }
 sumRange(4);
-
